@@ -1,0 +1,714 @@
+/* screen */
+* {
+
+    box-sizing: border-box;
+}
+
+.row::after {
+
+    content: "";
+    clear: both;
+    display: table;
+}
+
+[class*="col-"] {
+
+    float: left;
+    padding: 15px;
+
+}
+
+html {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+/*For mobile*/
+[class*="col-"] {
+    width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+
+    /* For desktop: */
+    .col-1 {
+        width: 8.33%;
+    }
+
+    .col-2 {
+        width: 16.66%;
+    }
+
+    .col-3 {
+        width: 25%;
+    }
+
+    .col-4 {
+        width: 33.33%;
+    }
+
+    .col-5 {
+        width: 41.66%;
+    }
+
+    .col-6 {
+        width: 50%;
+    }
+
+    .col-7 {
+        width: 58.33%;
+    }
+
+    .col-8 {
+        width: 66.66%;
+    }
+
+    .col-9 {
+        width: 75%;
+    }
+
+    .col-10 {
+        width: 83.33%;
+    }
+
+    .col-11 {
+        width: 91.66%;
+    }
+
+    .col-12 {
+        width: 100%;
+    }
+
+}
+
+/* text */
+.tm-txt-s {
+    font-size: small;
+}
+
+.tm-txt-xs {
+    font-size: x-small;
+}
+
+.tm-txt-sr {
+    font-size: smaller;
+}
+
+.tm-txt-xxs {
+    font-size: xx-small;
+}
+
+.tm-txt-m {
+    font-size: medium;
+}
+
+.tm-txt-l {
+    font-size: large;
+}
+
+.tm-txt-lr {
+    font-size: larger;
+}
+
+.tm-txt-xl {
+    font-size: x-large;
+}
+
+.tm-txt-xxl {
+    font-size: xx-large;
+}
+
+
+
+/* color */
+
+.tm-color-0 {
+    color: #FFFFFF;
+}
+
+.tm-color-1 {
+    color: #CCCCCC;
+}
+
+.tm-color-2 {
+    color: #666666;
+}
+
+.tm-color-3 {
+    /* color: #333333; */
+    color: #34495E;
+}
+
+.tm-color-4 {
+    color: #000000;
+}
+
+.tm-color-5 {
+    color: #E74C3C;
+}
+
+.tm-color-6 {
+    color: #E67E22;
+}
+
+.tm-color-7 {
+    color: #F1C40F;
+}
+
+.tm-color-8 {
+    color: #2ECC71;
+}
+
+.tm-color-9 {
+    color: #1ABC9C;
+}
+
+.tm-color-10 {
+    color: #3498DB;
+}
+
+.tm-color-11 {
+    color: #9B59B6;
+}
+
+.tm-color-12 {
+    color: #ECF0F1;
+}
+
+.tm-color-13 {
+    color: #95A5A6;
+}
+
+.tm-color-14 {
+    color: #34495E;
+}
+
+.tm-color-15 {
+    color: #339AF0;
+}
+
+/* background color */
+.tm-b-color-0 {
+    background-color: #FFFFFF;
+}
+
+.tm-b-color-1 {
+    background-color: #CCCCCC;
+}
+
+.tm-b-color-2 {
+    background-color: #666666;
+}
+
+.tm-b-color-3 {
+    background-color: #333333;
+}
+
+.tm-b-color-4 {
+    background-color: #000000;
+}
+
+.tm-b-color-5 {
+    background-color: #E74C3C;
+}
+
+.tm-b-color-6 {
+    background-color: #E67E22;
+}
+
+.tm-b-color-7 {
+    background-color: #F1C40F;
+}
+
+.tm-b-color-8 {
+    background-color: #2ECC71;
+}
+
+.tm-b-color-9 {
+    background-color: #1ABC9C;
+}
+
+.tm-b-color-10 {
+    background-color: #3498DB;
+}
+
+.tm-b-color-11 {
+    background-color: #9B59B6;
+}
+
+.tm-b-color-12 {
+    background-color: #ECF0F1;
+}
+
+.tm-b-color-13 {
+    background-color: #95A5A6;
+}
+
+.tm-b-color-14 {
+    background-color: #34495E;
+}
+
+.tm-b-color-15 {
+    background-color: #339AF0;
+}
+
+
+/* width */
+.tm-wd-0 {
+
+    width: 150px;
+
+}
+
+.tm-wd-1 {
+
+    width: 200px;
+
+}
+
+.tm-wd-2 {
+
+    width: 250px;
+
+}
+
+.tm-wd-3 {
+
+    width: 300px;
+
+}
+
+.tm-wd-full {
+    width: 100%;
+}
+
+/* height */
+.tm-ht-0 {
+
+    height: 150px;
+
+}
+
+.tm-ht-1 {
+
+    height: 250px;
+
+}
+
+.tm-ht-2 {
+
+    height: 350px;
+
+}
+
+.tm-ht-3 {
+
+    height: 400px;
+
+}
+
+.tm-ht-full {
+    height: 100%;
+}
+
+/* padding */
+.tm-pd-0 {
+    padding: 2px;
+}
+
+.tm-pd-1 {
+    padding: 4px;
+}
+
+.tm-pd-2 {
+    padding: 6px;
+}
+
+.tm-pd-3 {
+    padding: 8px;
+}
+
+/* border */
+
+.tm-bdr-0 {
+
+    border-style: none;
+}
+
+.tm-bdr-1 {
+
+    border-style: ridge;
+}
+
+.tm-bdr-2 {
+
+    border-style: dotted;
+}
+
+.tm-bdr-3 {
+
+    border-style: dashed;
+}
+
+
+
+/* border color */
+.tm-bdr-color-0 {
+    border-color: #DDF4FF;
+}
+
+.tm-bdr-color-1 {
+    border-color: #B2EBF2;
+}
+
+.tm-bdr-color-2 {
+    border-color: #00BCD4;
+}
+
+.tm-bdr-color-3 {
+    border-color: #005086;
+}
+
+
+/* border radius */
+
+.tm-bdr-rd-0 {
+    border-radius: 5px;
+}
+
+.tm-bdr-rd-1 {
+    border-radius: 10px;
+}
+
+.tm-bdr-rd-2 {
+    border-radius: 15px;
+}
+
+.tm-bdr-rd-3 {
+    border-radius: 20px;
+}
+
+.tm-bdr-wd-0 {
+    border-width: 2px;
+}
+
+.tm-bdr-wd-1 {
+    border-width: 4px;
+}
+
+.tm-bdr-wd-2 {
+    border-width: 6px;
+}
+
+
+
+
+/* input */
+.tm-input-0 {
+    background: transparent;
+
+}
+
+/* outline */
+.tm-outline-0 {
+    outline: none;
+}
+
+/* button */
+.tm-btn-0 {
+
+    overflow: hidden;
+
+}
+
+.tm-btn-0:hover {
+    background-color: rgb(37, 37, 37);
+}
+
+.tm-lnk-0 {
+    text-decoration: none;
+}
+
+.tm-shdw-0 {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 5px rgba(0, 0, 0, 0.24);
+}
+
+.tm-crcl-0 {
+    border-radius: 50%;
+}
+
+.tm-curs-0 {
+
+    cursor: pointer;
+}
+
+.tm-opacity-0 {
+
+    opacity: 0.2;
+}
+
+.tm-flt-r {
+    float: right;
+}
+
+.tm-flt-l {
+    float: left;
+}
+
+.tm-txt-flt-r {
+    text-align: right;
+}
+
+.tm-txt-flt-l {
+    text-align: left;
+}
+
+.tm-txt-flt-c {
+    text-align: center;
+}
+
+
+
+
+.tm-icon-0 {
+    width: 20px;
+}
+
+.tm-icon-1 {
+    width: 30px;
+}
+
+.tm-icon-2 {
+    width: 40px;
+}
+
+.tm-icon-3 {
+    width: 50px;
+}
+
+.tm-icon-4 {
+    width: 60px;
+}
+
+.tm-img-0 {
+
+
+    object-fit: contain;
+    width: 100%;
+    height: 400px;
+
+}
+
+.tm-img-1 {
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.tm-img-2 {
+    height: 150px;
+    width: 150px;
+    border-radius: 30%;
+    object-fit: cover;
+}
+
+
+.tm-top-nav {
+
+
+    overflow: hidden;
+    position: fixed;
+
+
+    top: 0;
+    width: 100%;
+    right: 0;
+
+}
+
+
+
+.tm-side-nav {
+    height: 100%;
+
+    width: 0;
+
+    position: fixed;
+
+    z-index: 1;
+
+    top: 0;
+
+    right: 0;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    border-radius: 5px;
+
+    overflow-x: hidden;
+
+    padding-top: 60px;
+
+}
+
+
+.tm-side-nav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-family: arial;
+    font-size: 4mm;
+
+    display: block;
+    font-weight: bold;
+}
+
+.tm-side-nav a:hover {
+    color: white;
+
+}
+
+.tm-content-0 {
+
+    margin-top: 50px;
+}
+
+
+
+
+
+.tm-overlay {
+    overflow-y: scroll;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+
+    visibility: hidden;
+    opacity: 0;
+}
+
+.tm-overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tm-popup {
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 50%;
+    position: relative;
+
+}
+
+
+@media screen and (max-width: 700px) {
+
+    .tm-popup {
+        width: 80%;
+    }
+}
+
+
+
+.tm-ftr-down {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.tm-nav-up {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+@property --p {
+    syntax: '<number>';
+    inherits: true;
+    initial-value: 0;
+}
+
+.pie {
+    --p: 20;
+    --b: 22px;
+    --c: darkred;
+    --w: 150px;
+
+    width: var(--w);
+    aspect-ratio: 1;
+    position: relative;
+    display: inline-grid;
+    margin: 5px;
+    place-content: center;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.pie:before,
+.pie:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+}
+
+.pie:before {
+    inset: 0;
+    background:
+        radial-gradient(farthest-side, var(--c) 98%, #0000) top/var(--b) var(--b) no-repeat,
+        conic-gradient(var(--c) calc(var(--p)*1%), #0000 0);
+    -webkit-mask: radial-gradient(farthest-side, #0000 calc(99% - var(--b)), #000 calc(100% - var(--b)));
+    mask: radial-gradient(farthest-side, #0000 calc(99% - var(--b)), #000 calc(100% - var(--b)));
+}
+
+.pie:after {
+    inset: calc(50% - var(--b)/2);
+    background: var(--c);
+    transform: rotate(calc(var(--p)*3.6deg)) translateY(calc(50% - var(--w)/2));
+}
+
+.animate {
+    animation: p 1s .5s both;
+}
+
+.no-round:before {
+    background-size: 0 0, auto;
+}
+
+.no-round:after {
+    content: none;
+}
+
+@keyframes p {
+    from {
+        --p: 0
+    }
+}
+

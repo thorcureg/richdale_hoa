@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?php require $config["PAGE"] . "meta" . DS  . "meta.phtml"; ?>
+</head>
+
+<body>
+    <header>
+        <p class="tm-b-color-14 tm-txt-m tm-color-0 tm-pd-3 tm-txt-flt-c">Admin Panel</p>
+        <p class="tm-b-color-12 tm-txt-s tm-color-14 tm-pd-3 tm-txt-flt-c">Notice: Only Administrator / Staff can access this portal</p>
+    </header>
+    <article>
+        <div class="row">
+            <div class="col-12">
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4 ">
+                <div class="row">
+                    <div class="col-12">
+                        <form action="?page=login" method="post">
+                            <p class="tm-color-14 tm-txt-s">Email*</p>
+                            <input type="email" name="email" required class="tm-input-0 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full" placeholder="Type here">
+                            <hr>
+                            <br>
+                            <p class="tm-color-14 tm-txt-s">Password*</p>
+                            <input type="password" name="password" required class="tm-input-0 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full" placeholder="Type here">
+                            <hr>
+                            <br>
+                            <input type="submit" name="btn_login" class=" tm-pd-3 tm-color-0 tm-b-color-15 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full tm-curs-0" value="Log In">
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4"></div>
+
+        </div>
+    </article>
+</body>
+
+</html>

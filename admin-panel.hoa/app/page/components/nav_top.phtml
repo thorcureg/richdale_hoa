@@ -1,0 +1,15 @@
+<p class="tm-b-color-14 tm-txt-m tm-color-0 tm-pd-3 tm-txt-flt-c">Admin Panel</p>
+<?php
+
+$notif_user = mysqli_query($db_connection, "SELECT * FROM users WHERE status = 'Pending' ORDER BY id DESC");
+$notif_payment = mysqli_query($db_connection, "SELECT payments.*, users.id as u_id, users.email , users.name FROM payments LEFT JOIN users on users.id = payments.user_id  WHERE payments.status = 'Pending' ORDER BY payments.id DESC");
+$notif_reservation = mysqli_query($db_connection, "SELECT reservations.*, users.name FROM reservations LEFT JOIN users on reservations.user_id = users.id WHERE reservations.status = 'Pending' ORDER BY reservations.id DESC");
+
+$usr = $_SESSION["admin-auth"]["role"] == "Administrator" ? (mysqli_num_rows($notif_user)) : 0;
+
+$notif_count = ($usr)   + mysqli_num_rows($notif_payment) + mysqli_num_rows($notif_reservation);
+if (!isset($_SESSION["admin-auth"])) {
+    header("Location: ?page=login");
+}
+
+?>

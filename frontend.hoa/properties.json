@@ -1,0 +1,10 @@
+{
+    "system_information":{
+        "name": "App",
+        "version" : "1.0.0"
+    },
+    "platform":{
+        "environment" : "local",
+        "version" : "2.1.0"
+    }
+}

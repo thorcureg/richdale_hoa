@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?php require $config["PAGE"] . "meta" . DS  . "meta.phtml"; ?>
+</head>
+
+<body>
+    <header>
+        <?php require $config["PAGE"] . "components" . DS  . "nav_top.phtml"; ?>
+    </header>
+    <article>
+        <div class="row">
+            <div class="col-2"><?php require $config["PAGE"] . "components" . DS  . "nav_left.phtml"; ?></div>
+            <div class="col-8">
+                <div class="row">
+
+                    <div class="col-12">
+                        <p class="tm-txt-m tm-color-14">Homeowner / <label class="tm-color-15">Homeowner</label></p>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-homeowners.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Homeowner Information</p>
+                                </center>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+
+                                    <p class="tm-color-3 tm-txt-m tm-flt-l">&nbsp; Basic Information</p>
+                                </center>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; First Name: <?php echo $house_info["first_name"]; ?></p>
+                                </center>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Last Name: <?php echo $house_info["last_name"]; ?></p>
+                                </center>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Phone: <?php echo $house_info["phone"]; ?></p>
+                                </center>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+
+                                    <p class="tm-color-3 tm-txt-m tm-flt-l">&nbsp; House Information</p>
+                                </center>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; House Number: <?php echo $house_info["house_number"]; ?></p>
+                                </center>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Block: <?php echo $house_info["block"]; ?></p>
+                                </center>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Lot: <?php echo $house_info["lot"]; ?></p>
+                                </center>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Street Name: <?php echo $house_info["street_name"]; ?></p>
+                                </center>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Type: <?php echo $house_info["type"]; ?></p>
+                                </center>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Land Size (m²): <?php echo $house_info["land_size"]; ?></p>
+                                </center>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Price: P <?php echo $house_info["price"]; ?></p>
+                                </center>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-2"><?php require $config["PAGE"] . "components" . DS  . "nav_right.phtml"; ?></div>
+
+
+        </div>
+    </article>
+</body>
+
+</html>

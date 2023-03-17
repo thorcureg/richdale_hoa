@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-12">
+
+        <p class="tm-txt-m tm-color-14">Notifications</label>
+
+        </p>
+        <hr>
+    </div>
+</div>
+<div style="overflow-y: scroll; height: 100%;">
+
+    <?php while ($row = mysqli_fetch_array($notif_payment)) { ?>
+        <div class="row tm-b-color-12">
+            <div class="col-12">
+
+                <form action="?page=payments" method="post">
+
+                    <input type="hidden" value="<?php echo $row["id"]; ?>" name="id">
+                    <button type="submit" name="btn_view" class="tm-wd-full tm-b-color-12 tm-bdr-0 tm-outline-0 tm-curs-0">
+                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-bell.png"; ?>" class="tm-icon-0">
+
+                        <p class="tm-color-15 tm-txt-xs ">Payment Verification Request</p>
+                        <p class="tm-color-14 tm-txt-xs "><?php echo $row["status"]; ?></p>
+                        <p class="tm-color-14 tm-txt-xs ">@ <?php echo $row["updated_at"]; ?></p>
+                    </button>
+
+                </form>
+
+            </div>
+        </div>
+        <br>
+    <?php } ?>
+    <?php while ($row = mysqli_fetch_array($notif_reservation)) { ?>
+
+        <?php
+
+        if (date('Y', strtotime($row["date"])) < date('Y', strtotime($current_date)) || date('Y', strtotime($row["date"])) == date('Y', strtotime($current_date)) && date('d', strtotime($row["date"])) < date('d', strtotime($current_date))) {
+        } else {  ?>
+            <div class="row tm-b-color-12">
+                <div class="col-12">
+
+                    <!-- <form action="?page=reservations" method="post"> -->
+                    <input type="hidden" value="<?php echo $row["date"]; ?>" name="id">
+                    <button type="submit" name="btn_view_days" class="tm-wd-full tm-b-color-12 tm-bdr-0 tm-outline-0 tm-curs-0">
+                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-bell.png"; ?>" class="tm-icon-0">
+                        <p class="tm-color-14 tm-txt-s"><b><?php echo $row["status"]; ?></b></p>
+                        <p class="tm-color-15 tm-txt-xs ">Reservation Request</p>
+                        <p class="tm-color-14 tm-txt-xs "><?php echo $row["type"]; ?></p>
+                        <p class="tm-color-14 tm-txt-xs "><?php echo !empty($row["feedback"]) ? "Feedback: " : ""; ?><label class="tm-color-15"><?php echo $row["feedback"]; ?></label></p>
+                        <p class="tm-color-14 tm-txt-xs ">Schedule: <?php echo $row["date"]; ?></p>
+                        <p class="tm-color-14 tm-txt-xs ">@ <?php echo $row["created_at"]; ?></p>
+                    </button>
+
+                    <!-- </form> -->
+
+                </div>
+            </div>
+        <?php } ?>
+
+        <br>
+    <?php } ?>
+</div>

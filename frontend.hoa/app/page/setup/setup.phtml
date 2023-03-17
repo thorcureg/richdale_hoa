@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?php require $config["PAGE"] . "meta" . DS  . "meta.phtml"; ?>
+</head>
+
+<body>
+    <header>
+        <?php require $config["PAGE"] . "components" . DS  . "nav_top.phtml"; ?>
+
+    </header>
+    <article>
+        <div class="row">
+            <div class="col-12">
+                <p class="tm-color-14 tm-pd-3 tm-b-color-12 tm-txt-s tm-txt-flt-c">Hello <label class="tm-color-15"><i><?php echo $_SESSION["user-auth"]["name"]; ?></i></label>, Please setup your account for homeowner verification.</p>
+                <br>
+
+                <form action="?page=setup" method="post">
+                    <div class="col-3"></div>
+                    <div class="col-6">
+
+                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                        <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Basic Information</p>
+
+                        <br><br><br>
+                        <p class="tm-color-14 tm-txt-s">First Name*</p>
+                        <input type="search" autocomplete="off" value="<?php echo $user_data["first_name"]; ?>" name="first_name" required class="tm-input-0 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full" placeholder="Type here">
+                        <hr>
+                        <br>
+                        <p class="tm-color-14 tm-txt-s">Last Name*</p>
+                        <input type="search" autocomplete="off" name="last_name" value="<?php echo $user_data["last_name"]; ?>" required class="tm-input-0 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full" placeholder="Type here">
+                        <hr>
+                        <br>
+                        <p class="tm-color-14 tm-txt-s">Phone*</p>
+                        <input type="number" min="1" autocomplete="off" value="<?php echo $user_data["phone"]; ?>" name="phone" required class="tm-input-0 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full" placeholder="Type here">
+                        <hr>
+                        <br><br>
+
+                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                        <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; House Information</p>
+
+                        <br><br><br>
+                        <p class="tm-color-14 tm-txt-s">House Number (Optional)</p>
+                        <input type="search" autocomplete="off" value="<?php echo $user_data["house_number"]; ?>" name="house_number"  class="tm-input-0 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full" placeholder="Type here">
+                        <hr>
+                        <br>
+                        <p class="tm-color-14 tm-txt-s">Block (Optional)</p>
+                        <input type="search" autocomplete="off" value="<?php echo $user_data["block"]; ?>" name="block" class="tm-input-0 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full" placeholder="Type here">
+                        <hr>
+                        <br>
+                        <p class="tm-color-14 tm-txt-s">Lot (Optional)</p>
+                        <input type="search" autocomplete="off" value="<?php echo $user_data["lot"]; ?>" name="lot" class="tm-input-0 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full" placeholder="Type here">
+                        <hr>
+                        <br>
+                        <p class="tm-color-14 tm-txt-s">Street Name*</p>
+                        <input type="search" autocomplete="off" value="<?php echo $user_data["street_name"]; ?>" name="street_name" required class="tm-input-0 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full" placeholder="Type here">
+                        <hr>
+                        <br>
+                        <p class="tm-color-14 tm-txt-s">Type*</p>
+                        <input type="search" autocomplete="off" value="<?php echo $user_data["type"]; ?>" name="type" required class="tm-input-0 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full" placeholder="Type here">
+                        <hr>
+                        <br>
+                        <p class="tm-color-14 tm-txt-s">Land Size (m²)*</p>
+                        <input type="number" autocomplete="off" name="land_size" value="<?php echo $user_data["land_size"]; ?>" required class="tm-input-0 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full" placeholder="Type here">
+                        <hr>
+                        <br>
+                        <p class="tm-color-14 tm-txt-s">Price (Per/m²)*</p>
+                        <input type="number" autocomplete="off" name="price" value="<?php echo $user_data["price"]; ?>" required class="tm-input-0 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full" placeholder="Type here">
+                        <hr>
+                        <br>
+                        <p class="tm-color-14 tm-txt-s"><input type="checkbox" required>Confirm Action*</p>
+                        <br>
+                        <input type="submit" name="btn_update" class=" tm-pd-3 tm-color-0 tm-b-color-15 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full tm-curs-0" value="Update">
+
+                    </div>
+                    <div class="col-6"></div>
+                </form>
+            </div>
+
+        </div>
+      
+
+
+    </article>
+
+
+
+
+</body>
+
+</html>

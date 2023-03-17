@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?php require $config["PAGE"] . "meta" . DS  . "meta.phtml"; ?>
+</head>
+
+<body>
+    <header>
+        <?php require $config["PAGE"] . "components" . DS  . "nav_top.phtml"; ?>
+    </header>
+    <article>
+
+        <div class="row">
+            <div class="col-2"><?php require $config["PAGE"] . "components" . DS  . "nav_left.phtml"; ?></div>
+            <div class="col-8">
+                <div class="row">
+
+                    <div class="col-12">
+                        <p class="tm-txt-m tm-color-14">Homeowner / <label class="tm-color-15">News (<?php echo mysqli_num_rows($news); ?>)</label>
+                         
+                        </p>
+
+                        <hr>
+
+                        <div style="overflow-y: scroll; height: 100%">
+                            <?php while ($row = mysqli_fetch_array($news)) { ?>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row tm-shdw-0" title="<?php echo $row["created_at"]; ?>">
+                                            <div class="col-12">
+                                                <p class="tm-color-14 tm-txt-xs tm-txt-flt-r">@ <?php echo $row["created_at"]; ?></p>
+                                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-events.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                                <p class="tm-color-14 tm-txt-s tm-flt-l">&nbsp;<?php echo $row["title"]; ?> </p>
+                                                <br>
+                                                <br>
+                                                <hr>
+                                                <p class="tm-color-3 tm-txt-s " style="white-space:pre;"><?php echo $row["description"]; ?> </p>
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <?php } ?>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-2"><?php require $config["PAGE"] . "components" . DS  . "nav_right.phtml"; ?></div>
+
+
+        </div>
+    </article>
+    <div class="tm-overlay" id="p_option">
+        <div class="tm-popup">
+            <div class="row">
+                <div class="col-12">
+                    <a href="#" class="tm-lnk-0  tm-b-color-12">
+                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-close.png"; ?>" class="tm-icon-1 tm-flt-r">
+                        <p class="tm-color-3 tm-txt-m tm-flt-l">News / <label class="tm-color-15">Options</label> </p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <a href="#p_add" class="tm-lnk-0  tm-b-color-12">
+                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-events.png"; ?>" class="tm-icon-1 tm-flt-l">
+                        <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Add News</p>
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <div class="tm-overlay" id="p_add">
+        <div class="tm-popup">
+            <form action="?page=news" method="post">
+                <div class="row">
+                    <div class="col-12">
+                        <a href="?page=news#p_option" class="tm-lnk-0  tm-b-color-12">
+                            <img src="<?php echo $config["STATIC"] . "images/icons/icon-close.png"; ?>" class="tm-icon-1 tm-flt-r">
+                            <p class="tm-color-3 tm-txt-m tm-flt-l">&nbsp; Add News </p>
+                        </a>
+                    </div>
+                </div>
+                <br>
+                <p class="tm-color-14 tm-txt-s">Title*</p>
+                <input type="search" autocomplete="off" maxlength="50" name="title" required placeholder="Type here" class="tm-input-0 tm-bdr-0 tm-outline-0 tm-pd-3 tm-txt-s  tm-wd-full">
+                <hr>
+                <p class="tm-color-14 tm-txt-s">Description*</p>
+                <textarea required name="description" placeholder="Type here" class="tm-input-0 tm-bdr-0 tm-outline-0 tm-pd-3   tm-wd-full" cols="30" rows="10"></textarea>
+                <hr>
+                <br>
+                <p class="tm-color-14 tm-txt-s"><input type="checkbox" required>Confirm Action*</p>
+                <br>
+                <input type="submit" name="btn_add" class=" tm-pd-3 tm-color-0 tm-b-color-15 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full tm-curs-0" value="Add">
+                <br>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

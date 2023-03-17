@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?php require $config["PAGE"] . "meta" . DS  . "meta.phtml"; ?>
+</head>
+
+<body>
+    <header>
+        <p class="tm-b-color-14 tm-txt-m tm-color-0 tm-pd-3 tm-txt-flt-c">Homeowners Association</p>
+
+        <a href="#p_sign_up" class="tm-flt-r tm-lnk-0 tm-curs-0">
+
+            <img src="<?php echo $config["STATIC"] . "images/icons/icon-add-user.png"; ?>" class="tm-icon-1 tm-flt-l">
+            <p class="tm-color-14 tm-txt-s tm-flt-s">&nbsp; Sign Up</p>
+        </a>
+        <p class="tm-flt-r tm-pd-3">&nbsp;</p>
+        <a href="#p_sign_in" class="tm-flt-r tm-lnk-0 tm-curs-0">
+            <img src="<?php echo $config["STATIC"] . "images/icons/icon-user.png"; ?>" class="tm-icon-1 tm-flt-l">
+            <p class="tm-color-14 tm-txt-s tm-flt-s">&nbsp; Sign In</p>
+        </a>
+
+    </header>
+    <article>
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-6">
+                        <center>
+                            <br><br>
+                            <img src="<?php echo $config["STATIC"] . "images/images/img-cover.png"; ?>" class="tm-img-0">
+                            <br><br>
+
+                        </center>
+                    </div>
+                    <div class="col-6">
+                        <p class="tm-color-14 tm-txt-xl tm-txt-flt-c">Welcome to Homeowners Association</p>
+                        <p class="tm-color-14 tm-txt-m tm-txt-flt-c">"Some people look for a lovely location. Others enhance the beauty of a location."</p>
+                        <br>
+                        <center>
+                            <div class="row">
+                                <div class="col-12">
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-check-blue.png"; ?>" class="tm-icon-2 tm-flt-l">
+                                    <p class="tm-color-14 tm-txt-m tm-flt-l">&nbsp; News Portal</p>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-check-blue.png"; ?>" class="tm-icon-2 tm-flt-l">
+                                    <p class="tm-color-14 tm-txt-m tm-flt-l">&nbsp; Community Calendar</p>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-check-blue.png"; ?>" class="tm-icon-2 tm-flt-l">
+                                    <p class="tm-color-14 tm-txt-m tm-flt-l">&nbsp; Online Payment Processing</p>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-check-blue.png"; ?>" class="tm-icon-2 tm-flt-l">
+                                    <p class="tm-color-14 tm-txt-m tm-flt-l">&nbsp; Reservation</p>
+
+                                </div>
+                            </div>
+                        </center>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-12">
+
+            </div>
+        </div>
+
+
+    </article>
+    <br><br>
+    <footer>
+        <?php require $config["PAGE"] . "components" . DS  . "nav_bottom.phtml"; ?>
+    </footer>
+
+    <div class="tm-overlay" id="p_sign_in">
+        <div class="tm-popup">
+            <form action="?page=home" method="post">
+                <div class="row">
+                    <div class="col-12">
+                        <a href="#" class="tm-lnk-0  tm-b-color-12">
+                            <img src="<?php echo $config["STATIC"] . "images/icons/icon-close.png"; ?>" class="tm-icon-1 tm-flt-r">
+                            <p class="tm-color-3 tm-txt-m tm-flt-l">&nbsp; Sign In </p>
+                        </a>
+                    </div>
+                </div>
+
+                <p class="tm-color-14 tm-txt-s">Email*</p>
+                <input type="email" name="email" required class="tm-input-0 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full" placeholder="Type here">
+                <hr>
+                <br>
+                <p class="tm-color-14 tm-txt-s">Password*</p>
+                <input type="password" name="password" required class="tm-input-0 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full" placeholder="Type here">
+                <hr>
+                <br>
+                <input type="submit" name="btn_login" class=" tm-pd-3 tm-color-0 tm-b-color-15 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full tm-curs-0" value="Sign In">
+
+            </form>
+
+        </div>
+    </div>
+    <div class="tm-overlay" id="p_sign_up">
+        <div class="tm-popup">
+            <form action="?page=home" method="post">
+                <div class="row">
+                    <div class="col-12">
+                        <a href="#" class="tm-lnk-0  tm-b-color-12">
+                            <img src="<?php echo $config["STATIC"] . "images/icons/icon-close.png"; ?>" class="tm-icon-1 tm-flt-r">
+                            <p class="tm-color-3 tm-txt-m tm-flt-l">&nbsp; Sign Up </p>
+                        </a>
+                    </div>
+                </div>
+
+                <br>
+                <p class="tm-color-14 tm-txt-s">Name*</p>
+                <input type="search" autocomplete="off" maxlength="50" name="name" required placeholder="Type here" class="tm-input-0 tm-bdr-0 tm-outline-0 tm-pd-3 tm-txt-s  tm-wd-full">
+                <hr>
+                <br>
+                <p class="tm-color-14 tm-txt-s">Email*</p>
+                <input type="email" autocomplete="off" name="email" required placeholder="Type here" class="tm-input-0 tm-bdr-0 tm-outline-0 tm-pd-3 tm-txt-s  tm-wd-full">
+                <hr>
+                <br>
+                <p class="tm-color-14 tm-txt-s">Password*</p>
+                <input type="search" autocomplete="off" minlength="8" maxlength="32" name="password" required placeholder="Type here" class="tm-input-0 tm-bdr-0 tm-outline-0 tm-pd-3 tm-txt-s  tm-wd-full">
+                <hr>
+                <br>
+                <p class="tm-color-14 tm-txt-s"><input type="checkbox" required>I have read and agreed to the <label class="tm-color-15">terms and conditions</label>.</p>
+                <br>
+                <input type="submit" name="btn_sign_up" class=" tm-pd-3 tm-color-0 tm-b-color-15 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full tm-curs-0" value="Sign Up">
+                <br>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?php require $config["PAGE"] . "meta" . DS  . "meta.phtml"; ?>
+</head>
+
+<body>
+    <header>
+        <?php require $config["PAGE"] . "components" . DS  . "nav_top.phtml"; ?>
+    </header>
+    <article>
+        <div class="row">
+            <div class="col-2"><?php require $config["PAGE"] . "components" . DS  . "nav_left.phtml"; ?></div>
+            <div class="col-8">
+                <div class="row">
+
+                    <div class="col-12">
+                        <p class="tm-txt-m tm-color-14">Homeowner / <label class="tm-color-15">Payments (<?php echo mysqli_num_rows($payments); ?>)</label>
+                            <a href="#p_option" class="tm-lnk-0 tm-flt-r">
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-option2.png"; ?>" class="tm-icon-1">
+                            </a>
+                        </p>
+                        <hr>
+                        <?php if (isset($_SESSION["payments_sid"]) && !empty($_SESSION["payments_sid"])) { ?>
+                            <p class="tm-color-14 tm-txt-s">Showing results for <i class="tm-color-15"><?php echo $_SESSION["payments_sid"]; ?></i>. <a href="#p_search" class="tm-color-15 tm-txt-s" title="Click here to search">Search</a></p>
+                        <?php }   ?>
+                        <div style="overflow-y: scroll; height: 100%">
+                            <?php while ($row = mysqli_fetch_array($payments)) { ?>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row tm-shdw-0" title="Created At: <?php echo $row["created_at"]; ?>">
+                                            <div class="col-12">
+
+                                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-payments.png"; ?>" class="tm-icon-1 tm-flt-l">
+
+                                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; <?php echo $row["type"]; ?> | P <?php echo number_format($row["amount"], 2); ?> | <label class="<?php echo $row["status"] == "Paid" ? "tm-color-9" : "tm-color-5" ?>"><?php echo $row["status"]; ?></label></p>
+                                                <form action="?page=payments" method="post">
+                                                    <button type="submit" name="btn_view" class="tm-bdr-0 tm-flt-r tm-curs-0 tm-b-color-0">
+                                                        <input type="hidden" name="id" value="<?php echo $row["id"]; ?>">
+                                                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-option.png"; ?>" class="tm-icon-1 ">
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <?php } ?>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-2"><?php require $config["PAGE"] . "components" . DS  . "nav_right.phtml"; ?></div>
+
+
+        </div>
+
+        <div class="tm-overlay" id="p_option">
+            <div class="tm-popup">
+                <div class="row">
+                    <div class="col-12">
+                        <a href="#" class="tm-lnk-0  tm-b-color-12">
+                            <img src="<?php echo $config["STATIC"] . "images/icons/icon-close.png"; ?>" class="tm-icon-1 tm-flt-r">
+                            <p class="tm-color-3 tm-txt-m tm-flt-l">Payments / <label class="tm-color-15">Options</label> </p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <a href="#p_search" class="tm-lnk-0  tm-b-color-12">
+                            <img src="<?php echo $config["STATIC"] . "images/icons/icon-search.png"; ?>" class="tm-icon-1 tm-flt-l">
+                            <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Search</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <a href="#p_pay" class="tm-lnk-0  tm-b-color-12">
+                            <img src="<?php echo $config["STATIC"] . "images/icons/icon-payment-add.png"; ?>" class="tm-icon-1 tm-flt-l">
+                            <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Add Payment</p>
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="tm-overlay" id="p_search">
+            <div class="tm-popup">
+                <form action="?page=payments" method="post">
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="?page=payments#p_option" class="tm-lnk-0  tm-b-color-12">
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-close.png"; ?>" class="tm-icon-1 tm-flt-r">
+                                <p class="tm-color-3 tm-txt-m tm-flt-l">&nbsp; Search Payment </p>
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <p class="tm-color-14 tm-b-color-12 tm-pd-3 tm-txt-s tm-txt-flt-c">Notice: Enter empty field if you wish to display default data.</p>
+                    <br>
+                    <p class="tm-color-14 tm-txt-s">Search</p>
+                    <input type="search" name="id" placeholder="Type here" class="tm-input-0 tm-bdr-0 tm-outline-0 tm-pd-3 tm-txt-s  tm-wd-full">
+                    <button type="submit" name="btn_search" hidden></button>
+                    <hr>
+                    <br>
+
+                </form>
+
+            </div>
+        </div>
+
+
+
+        <div class="tm-overlay" id="p_pay">
+            <div class="tm-popup">
+                <form action="?page=payments" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="?page=payments#p_option" class="tm-lnk-0  tm-b-color-12">
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-close.png"; ?>" class="tm-icon-1 tm-flt-r">
+                                <p class="tm-color-3 tm-txt-m tm-flt-l">&nbsp; Add Payment </p>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="tm-b-color-12 tm-color-14 tm-pd-3 tm-txt-flt-c tm-txt-s">Notice: For reservation downpayment(50%), here is the GCASH number.
+
+                        09128745762.</p>
+                    <br>
+
+                    <p class="tm-color-14 tm-txt-s">Payment Type*</p>
+                    <input type="search" autocomplete="off" name="type" required placeholder="Bank Transfer, GCash , ETC" class="tm-input-0 tm-bdr-0 tm-outline-0 tm-pd-3 tm-txt-s  tm-wd-full">
+                    <hr>
+                    <br>
+                    <p class="tm-color-14 tm-txt-s">Amount*</p>
+                    <input type="number" min="1" autocomplete="off" step="0.01" name="amount" required placeholder="Type here" class="tm-input-0 tm-bdr-0 tm-outline-0 tm-pd-3 tm-txt-s  tm-wd-full">
+                    <hr>
+                    <br>
+                    <p class="tm-color-14 tm-txt-s">Note*</p>
+                    <textarea name="note" required placeholder="Type here" class="tm-input-0 tm-bdr-0 tm-outline-0 tm-pd-3   tm-wd-full" id="" cols="30" rows="10"></textarea>
+                    <hr>
+                    <br>
+                    <p class="tm-color-14 tm-txt-s">Proof of Payment*</p>
+                    <input type="file" autocomplete="off" name="image" required class="tm-input-0 tm-bdr-0 tm-outline-0 tm-pd-3 tm-txt-s  tm-wd-full">
+                    <hr>
+                    <br>
+                    <p class="tm-color-14 tm-txt-s"><input type="checkbox" required>Confirm Action*</p>
+                    <br>
+                    <input type="submit" class=" tm-pd-3 tm-color-0 tm-b-color-15 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full tm-curs-0" value="Add">
+                    <br>
+                </form>
+            </div>
+        </div>
+        <?php if (isset($_SESSION["payments_hvid2"]) && !empty($_SESSION["payments_hvid2"])) { ?>
+            <div class="tm-overlay" id="p_option2">
+                <div class="tm-popup">
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="#" class="tm-lnk-0  tm-b-color-12">
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-close.png"; ?>" class="tm-icon-1 tm-flt-r">
+                                <p class="tm-color-3 tm-txt-m tm-flt-l">Payment / <label class="tm-color-15">Actions</label> </p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="#p_details" class="tm-lnk-0  tm-b-color-12">
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-payment-eye.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Details</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <?php if ($_SESSION["payments_hvid2"]["status"] == "Pending") { ?>
+                        <div class="row">
+                            <div class="col-12">
+
+
+
+                                <a href="#" onclick="document.getElementById('cancel').click();" class="tm-lnk-0 tm-color-14  tm-b-color-12">
+
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-payment-eye.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Set Payment as Cancelled</p>
+
+
+                                </a>
+
+
+                                <form action="?page=payments" method="post">
+                                    <input type="hidden" value="<?php echo $_SESSION["payments_hvid2"]["id"]; ?>" name="id">
+                                    <button type="submit" id="cancel" name="btn_cancel" class="tm-bdr-0 tm-b-color-0 tm-curs-0"> </button>
+                                </form>
+                            </div>
+                        </div>
+                    <?php } ?>
+
+
+
+
+                </div>
+            </div>
+            <div class="tm-overlay" id="p_details">
+                <div class="tm-popup">
+
+
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="?page=payments#p_option2" class="tm-lnk-0  tm-b-color-12">
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-close.png"; ?>" class="tm-icon-1 tm-flt-r">
+                                <p class="tm-color-3 tm-txt-m tm-flt-l">&nbsp; Payment Details</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <center>
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Payment Type: <?php echo $_SESSION["payments_hvid2"]["type"]; ?></p>
+                            </center>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <center>
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Amount: P <?php echo number_format($_SESSION["payments_hvid2"]["amount"], 2); ?></p>
+                            </center>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <center>
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Note: <?php echo $_SESSION["payments_hvid2"]["note"]; ?></p>
+                            </center>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <center>
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Feedback: <?php echo $_SESSION["payments_hvid2"]["feedback"]; ?></p>
+                            </center>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <center>
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Status: <?php echo $_SESSION["payments_hvid2"]["status"]; ?></p>
+                            </center>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <center>
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Created At: <?php echo $_SESSION["payments_hvid2"]["created_at"]; ?></p>
+                            </center>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <center>
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Updated At: <?php echo $_SESSION["payments_hvid2"]["updated_at"]; ?></p>
+                            </center>
+
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-12">
+                            <center>
+                                <p class="tm-color-3 tm-txt-m tm-flt-l">&nbsp; Proof of Payment</p>
+                            </center>
+
+                        </div>
+                    </div>
+                    <?php if (file_exists($config["FS"] . "static.hoa" . DS . "uploads" . DS . "payments" . DS . $_SESSION["payments_hvid2"]["file_name"])) { ?>
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="<?php echo $config["STATIC"] . "uploads" . DS . "payments" . DS . $_SESSION["payments_hvid2"]["file_name"]; ?>" target="_blank" class="tm-lnk-0  tm-b-color-12">
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-file.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Attachment</p>
+                                </a>
+                            </div>
+                        </div>
+                    <?php } else {  ?>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="#" class="tm-lnk-0  tm-b-color-12">
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-5 tm-txt-s tm-flt-l">&nbsp; No Attachment</p>
+                                </a>
+                            </div>
+                        </div>
+                    <?php } ?>
+
+                <?php } ?>
+
+
+                </div>
+            </div>
+
+    </article>
+</body>
+
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?php require $config["PAGE"] . "meta" . DS  . "meta.phtml"; ?>
+</head>
+
+<body>
+    <header>
+        <?php require $config["PAGE"] . "components" . DS  . "nav_top.phtml"; ?>
+    </header>
+    <article>
+        <div class="row">
+            <div class="col-2"><?php require $config["PAGE"] . "components" . DS  . "nav_left.phtml"; ?></div>
+            <div class="col-8">
+                <div class="row">
+
+                    <div class="col-12">
+                        <p class="tm-txt-m tm-color-14">Admin Panel / <label class="tm-color-15">Reservations</label>
+                            <a href="#p_option" class="tm-lnk-0 tm-flt-r">
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-option2.png"; ?>" class="tm-icon-1">
+                            </a>
+                        </p>
+
+                        <hr>
+                        <div style="overflow-y: scroll; height: 100%">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="tm-color-14 tm-txt-m">Calendar:
+                                        <label class="tm-color-15"><?php echo date('F', strtotime($year . "-" . $month)) . ", " . $year;  ?></label>
+                                    </p>
+
+
+                                </div>
+                            </div>
+                            <div class="row tm-shdw-0">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <?php for ($x = 1; $x <= $days; $x++) { ?>
+                                            <script>
+                                                function btn_<?php echo $x; ?>() {
+                                                    document.getElementById('btn_<?php echo $x; ?>').click();
+                                                }
+                                            </script>
+                                            <a href="#" onclick="btn_<?php echo $x; ?>();" class="tm-lnk-0">
+                                                <div class="col-2 tm-curs-0">
+                                                    <div class="row tm-shdw-0">
+                                                        <div class="col-12">
+                                                            <center>
+                                                                <form action="?page=reservations" method="post">
+                                                                    <p class="tm-color-0 tm-b-color-14 tm-txt-s tm-pd-3" style="width:30px; border-radius:20px;"> <?php echo $x; ?></p>
+                                                                    <p class="tm-color-14 tm-txt-xs">
+                                                                        <?php
+                                                                        $day_stat =  mysqli_query($db_connection, ("SELECT * FROM reservations WHERE date = '" . $year . "-" . $month . "-" . $x . "' ORDER BY id DESC"
+                                                                        ));
+                                                                        $day_data = mysqli_fetch_array($day_stat);
+
+                                                                        if ($year < date('Y', strtotime($current_date)) || $year == date('Y', strtotime($current_date)) && $month == date('m', strtotime($current_date)) && $x < date('d', strtotime($current_date))) { ?>
+
+                                                                            <label class="tm-color-5">Unavailable</label>
+                                                                        <?php } else { ?>
+                                                                            <label class="tm-color-9">Available</label>
+
+                                                                        <?php }  ?>
+
+                                                                    </p>
+                                                                    <p class="tm-color-14 tm-txt-xs "><?php echo date('l', strtotime($year . "-" . $month . "-" . $x)) ?></p>
+                                                                    <input type="hidden" name="id" value="<?php echo $year . "-" . $month . "-" . $x; ?>">
+                                                                    <button type="submit" name="btn_view_days" id="btn_<?php echo $x; ?>" hidden></button>
+                                                                </form>
+                                                            </center>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </a>
+
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-2"><?php require $config["PAGE"] . "components" . DS  . "nav_right.phtml"; ?></div>
+            <div class="tm-overlay" id="p_option">
+                <div class="tm-popup">
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="#" class="tm-lnk-0  tm-b-color-12">
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-close.png"; ?>" class="tm-icon-1 tm-flt-r">
+                                <p class="tm-color-3 tm-txt-m tm-flt-l">Reservations / <label class="tm-color-15">Options</label> </p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="#p_date" class="tm-lnk-0  tm-b-color-12">
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-search.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Calendar View</p>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="tm-overlay" id="p_date">
+                <div class="tm-popup">
+                    <form action="?page=reservations" method="post">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="?page=reservations#p_option" class="tm-lnk-0  tm-b-color-12">
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-close.png"; ?>" class="tm-icon-1 tm-flt-r">
+                                    <p class="tm-color-3 tm-txt-m tm-flt-l">&nbsp; Calendar View</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <br>
+                        <p class="tm-color-14 tm-txt-s">Choose Date*</p>
+                        <input type="month" autocomplete="off" name="date" required class="tm-input-0 tm-bdr-0 tm-outline-0 tm-pd-3 tm-curs-0 tm-wd-full">
+                        <hr>
+                        <br>
+
+                        <input type="submit" name="btn_calender_view" class=" tm-pd-3 tm-color-0 tm-b-color-15 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full tm-curs-0" value="View">
+                        <br>
+                    </form>
+                </div>
+            </div>
+
+            <?php if (isset($_SESSION["res_vid"]) &&  !empty($_SESSION["res_vid"])) { ?>
+
+                <div class="tm-overlay" id="p_view_day">
+                    <div class="tm-popup" style="width:90%; ">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="#" class="tm-lnk-0  tm-b-color-12">
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-close.png"; ?>" class="tm-icon-1 tm-flt-r">
+                                    <p class="tm-color-3 tm-txt-m tm-flt-l">&nbsp; Reservations / <label class="tm-color-15"><?php echo date('F d Y', strtotime($_SESSION["res_vid"]));  ?></label></p>
+                                </a>
+                            </div>
+                        </div>
+                        <?php if (mysqli_num_rows($ress) != 0) { ?>
+                            <?php while ($row = mysqli_fetch_array($ress)) { ?>
+                                <div class="row tm-shdw-0">
+                                    <div class="col-12">
+
+
+                                        <center>
+                                            <p class="tm-color-15 tm-txt-m"><?php echo $row["type"]; ?></p>
+                                        </center>
+                                        <hr>
+                                        <form action="?page=reservations" method="post">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <center>
+                                                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                                        <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Name: <?php echo $row["name"]; ?></p>
+                                                    </center>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <center>
+                                                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                                        <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Email: <?php echo $row["email"]; ?></p>
+                                                    </center>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <center>
+                                                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                                        <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Type: <?php echo $row["type"]; ?></p>
+                                                    </center>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <center>
+                                                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                                        <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Schedule Time: <?php echo date('h:i A', strtotime($row["time"])); ?></p>
+                                                    </center>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <center>
+                                                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                                        <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Amount To Pay: P <?php echo number_format($row["payment"], 2); ?></p>
+                                                    </center>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <center>
+                                                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                                        <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Note: <?php echo $row["note"]; ?></p>
+                                                    </center>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <center>
+                                                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                                        <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Feedback: <?php echo $row["feedback"]; ?></p>
+                                                    </center>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <center>
+                                                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                                        <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Status: <?php echo $row["status"]; ?></p>
+                                                    </center>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <center>
+                                                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                                        <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Created At: <?php echo $row["created_at"]; ?></p>
+                                                    </center>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <center>
+                                                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                                        <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Updated At: <?php echo $row["updated_at"]; ?></p>
+                                                    </center>
+
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <br>
+                                            <p class="tm-color-14 tm-txt-s">Status*</p>
+                                            <select name="status" required class="tm-input-0 tm-bdr-0 tm-outline-0 tm-pd-3 tm-txt-s  tm-wd-full">
+
+                                                <option <?php echo $row["status"] == "Pending" ? 'selected' : ''; ?> value="Pending">Pending</option>
+                                                <option <?php echo $row["status"] == "Cancelled" ? 'selected' : ''; ?> value="Cancelled">Cancelled</option>
+                                                <option <?php echo $row["status"] == "Completed" ? 'selected' : ''; ?> value="Completed">Completed</option>
+                                            </select>
+                                            <hr>
+                                            <br>
+
+                                            <p class="tm-color-14 tm-txt-s">Feedback</p>
+                                            <textarea name="feedback" placeholder="Type here" class="tm-input-0 tm-bdr-0 tm-outline-0 tm-pd-3  tm-wd-full " cols="30" rows="10"></textarea>
+
+                                            <hr>
+                                            <br>
+                                            <br>
+                                            <p class="tm-color-14 tm-txt-s"><input type="checkbox" required>Confirm Action*</p>
+                                            <br>
+                                            <input type="hidden" name="id" value="<?php echo $row["id"]; ?>">
+                                            <input type="hidden" name="uid" value="<?php echo $row["user_id"]; ?>">
+                                            <input type="submit" name="btn_update_res" class=" tm-pd-3 tm-color-0 tm-b-color-15 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full tm-curs-0" value="Update Reservation">
+                                            <br>
+                                        </form>
+
+                                    </div>
+
+                                </div>
+                                <br>
+                            <?php } ?>
+                        <?php } else { ?>
+                            <center>
+                                <p class="tm-color-5 tm-txt-s">No reservations!</p>
+                            </center>
+                        <?php } ?>
+                    </div>
+                </div>
+            <?php } ?>
+    </article>
+</body>
+
+</html>

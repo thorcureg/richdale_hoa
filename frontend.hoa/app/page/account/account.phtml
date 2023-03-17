@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?php require $config["PAGE"] . "meta" . DS  . "meta.phtml"; ?>
+</head>
+
+<body>
+    <header>
+        <?php require $config["PAGE"] . "components" . DS  . "nav_top.phtml"; ?>
+    </header>
+    <article>
+        <div class="row">
+            <div class="col-2"><?php require $config["PAGE"] . "components" . DS  . "nav_left.phtml"; ?></div>
+            <div class="col-8">
+                <div class="row">
+
+                    <div class="col-12">
+                        <p class="tm-txt-m tm-color-14">Homeowner / <label class="tm-color-15">Account</label></p>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-profile.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Account Information</p>
+                                </center>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Name: <?php echo $_SESSION["user-auth"]["name"]; ?></p>
+                                </center>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Email: <?php echo $_SESSION["user-auth"]["email"]; ?></p>
+                                </center>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Role: <?php echo $_SESSION["user-auth"]["role"]; ?></p>
+                                </center>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Status: <?php echo $_SESSION["user-auth"]["status"]; ?></p>
+                                </center>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Created At: <?php echo $_SESSION["user-auth"]["created_at"]; ?></p>
+                                </center>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Updated At: <?php echo $_SESSION["user-auth"]["updated_at"]; ?></p>
+                                </center>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-2"><?php require $config["PAGE"] . "components" . DS  . "nav_right.phtml"; ?></div>
+
+
+        </div>
+    </article>
+</body>
+
+</html>

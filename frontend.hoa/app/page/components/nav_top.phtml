@@ -1,0 +1,14 @@
+<p class="tm-b-color-14 tm-txt-m tm-color-0 tm-pd-3 tm-txt-flt-c">Homeowners Association</p>
+
+<?php
+
+$notif_reservation = mysqli_query($db_connection, "SELECT reservations.*, users.name FROM reservations LEFT JOIN users on reservations.user_id = users.id WHERE reservations.user_id = '".$_SESSION["user-auth"]["id"]."' AND reservations.status = 'Pending' OR reservations.status = 'Completed' AND reservations.user_id = '".$_SESSION["user-auth"]["id"]."' ORDER BY reservations.id DESC");
+
+$notif_payment = mysqli_query($db_connection,"SELECT * FROM payments  WHERE user_id = '".$_SESSION["user-auth"]["id"]."' AND status = 'Paid' ORDER BY id DESC");
+
+$notif_count =  mysqli_num_rows($notif_payment) + mysqli_num_rows($notif_reservation);
+if (!isset($_SESSION["user-auth"])) {
+    header("Location: ?page=home#p_sign_in");
+}
+
+?>

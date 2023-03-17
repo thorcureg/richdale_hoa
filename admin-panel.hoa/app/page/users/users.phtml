@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?php require $config["PAGE"] . "meta" . DS  . "meta.phtml"; ?>
+</head>
+
+<body>
+    <header>
+        <?php require $config["PAGE"] . "components" . DS  . "nav_top.phtml"; ?>
+    </header>
+    <article>
+
+        <div class="row">
+            <div class="col-2"><?php require $config["PAGE"] . "components" . DS  . "nav_left.phtml"; ?></div>
+            <div class="col-8">
+                <div class="row">
+
+                    <div class="col-12">
+                        <p class="tm-txt-m tm-color-14">Admin Panel / <label class="tm-color-15">Users (<?php echo mysqli_num_rows($users); ?>)</label>
+                            <a href="#p_option" class="tm-lnk-0 tm-flt-r">
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-option2.png"; ?>" class="tm-icon-1">
+                            </a>
+                        </p>
+
+                        <hr>
+                        <?php if (isset($_SESSION["users_sid"]) && !empty($_SESSION["users_sid"])) { ?>
+                            <p class="tm-color-14 tm-txt-s">Showing results for <i class="tm-color-15"><?php echo $_SESSION["users_sid"]; ?></i>. <a href="#p_search" class="tm-color-15 tm-txt-s" title="Click here to search">Search</a></p>
+                        <?php }   ?>
+                        <div style="overflow-y: scroll; height: 100%">
+                            <?php while ($row = mysqli_fetch_array($users)) { ?>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row tm-shdw-0" title="<?php echo $row["role"]; ?>">
+                                            <div class="col-12">
+                                                <?php if ($row["role"] == "Administrator") { ?>
+                                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-admin.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                                <?php } ?>
+                                                <?php if ($row["role"] == "Officer") { ?>
+                                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-officer.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                                <?php } ?>
+                                                <?php if ($row["role"] == "Standard") { ?>
+                                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-user.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                                <?php } ?>
+                                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; <?php echo $row["role"]; ?> | <?php echo $row["name"]; ?> | <?php echo $row["email"]; ?> | <label class="<?php echo $row["status"] == "Active" ? "tm-color-9" : "tm-color-5" ?>"><?php echo $row["status"]; ?></label></p>
+                                                <form action="?page=users" method="post">
+                                                    <button type="submit" name="btn_view" class="tm-bdr-0 tm-flt-r tm-curs-0 tm-b-color-0">
+                                                        <input type="hidden" name="id" value="<?php echo $row["id"]; ?>">
+                                                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-option.png"; ?>" class="tm-icon-1 ">
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <?php } ?>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-2"><?php require $config["PAGE"] . "components" . DS  . "nav_right.phtml"; ?></div>
+
+
+        </div>
+    </article>
+    <div class="tm-overlay" id="p_option">
+        <div class="tm-popup">
+            <div class="row">
+                <div class="col-12">
+                    <a href="#" class="tm-lnk-0  tm-b-color-12">
+                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-close.png"; ?>" class="tm-icon-1 tm-flt-r">
+                        <p class="tm-color-3 tm-txt-m tm-flt-l">Users / <label class="tm-color-15">Options</label> </p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <a href="#p_search" class="tm-lnk-0  tm-b-color-12">
+                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-search.png"; ?>" class="tm-icon-1 tm-flt-l">
+                        <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Search User</p>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <a href="#p_add_user" class="tm-lnk-0  tm-b-color-12">
+                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-add-user.png"; ?>" class="tm-icon-1 tm-flt-l">
+                        <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Add User</p>
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="tm-overlay" id="p_search">
+        <div class="tm-popup">
+            <form action="?page=users" method="post">
+                <div class="row">
+                    <div class="col-12">
+                        <a href="?page=users#p_option" class="tm-lnk-0  tm-b-color-12">
+                            <img src="<?php echo $config["STATIC"] . "images/icons/icon-close.png"; ?>" class="tm-icon-1 tm-flt-r">
+                            <p class="tm-color-3 tm-txt-m tm-flt-l">&nbsp; Search User </p>
+                        </a>
+                    </div>
+                </div>
+
+
+                <p class="tm-color-14 tm-b-color-12 tm-pd-3 tm-txt-s tm-txt-flt-c">Notice: Enter empty field if you wish to display default data.</p>
+                <br>
+                <p class="tm-color-14 tm-txt-s">Search</p>
+                <input type="search" name="id" placeholder="Type here" class="tm-input-0 tm-bdr-0 tm-outline-0 tm-pd-3 tm-txt-s  tm-wd-full">
+                <button type="submit" name="btn_search" hidden></button>
+                <hr>
+                <br>
+
+            </form>
+
+        </div>
+    </div>
+    <div class="tm-overlay" id="p_add_user">
+        <div class="tm-popup">
+            <form action="?page=users" method="post">
+                <div class="row">
+                    <div class="col-12">
+                        <a href="?page=users#p_option" class="tm-lnk-0  tm-b-color-12">
+                            <img src="<?php echo $config["STATIC"] . "images/icons/icon-close.png"; ?>" class="tm-icon-1 tm-flt-r">
+                            <p class="tm-color-3 tm-txt-m tm-flt-l">&nbsp; Add User </p>
+                        </a>
+                    </div>
+                </div>
+                <br>
+                <p class="tm-color-14 tm-txt-s">User Role*</p>
+                <select name="role" required class="tm-input-0 tm-bdr-0 tm-outline-0 tm-pd-3 tm-txt-s  tm-wd-full">
+                    <option value="">--Select here--</option>
+                    <option value="Administrator">Administrator</option>
+                    <option value="Officer">Officer</option>
+                    <option value="Standard">Standard</option>
+                </select>
+                <hr>
+                <br>
+                <p class="tm-color-14 tm-txt-s">Name*</p>
+                <input type="search" autocomplete="off" maxlength="50" name="name" required placeholder="Type here" class="tm-input-0 tm-bdr-0 tm-outline-0 tm-pd-3 tm-txt-s  tm-wd-full">
+                <hr>
+                <br>
+                <p class="tm-color-14 tm-txt-s">Email*</p>
+                <input type="email" autocomplete="off" name="email" required placeholder="Type here" class="tm-input-0 tm-bdr-0 tm-outline-0 tm-pd-3 tm-txt-s  tm-wd-full">
+                <hr>
+                <br>
+                <p class="tm-color-14 tm-txt-s">Password*</p>
+                <input type="search" autocomplete="off" minlength="8" maxlength="32" name="password" required placeholder="Type here" class="tm-input-0 tm-bdr-0 tm-outline-0 tm-pd-3 tm-txt-s  tm-wd-full">
+                <hr>
+                <br>
+                <p class="tm-color-14 tm-txt-s"><input type="checkbox" required>Confirm Action*</p>
+                <br>
+                <input type="submit" name="btn_add" class=" tm-pd-3 tm-color-0 tm-b-color-15 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full tm-curs-0" value="Add">
+                <br>
+            </form>
+        </div>
+    </div>
+    <?php if (isset($_SESSION["users_vid"]) && !empty($_SESSION["users_vid"])) { ?>
+        <div class="tm-overlay" id="p_option2">
+            <div class="tm-popup">
+                <div class="row">
+                    <div class="col-12">
+                        <a href="#" class="tm-lnk-0  tm-b-color-12">
+                            <img src="<?php echo $config["STATIC"] . "images/icons/icon-close.png"; ?>" class="tm-icon-1 tm-flt-r">
+                            <p class="tm-color-3 tm-txt-m tm-flt-l">Users / <label class="tm-color-15">Actions</label> </p>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <a href="#p_details" class="tm-lnk-0  tm-b-color-12">
+                            <img src="<?php echo $config["STATIC"] . "images/icons/icon-user-eye.png"; ?>" class="tm-icon-1 tm-flt-l">
+                            <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Details</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <a href="#p_update_user" class="tm-lnk-0  tm-b-color-12">
+                            <img src="<?php echo $config["STATIC"] . "images/icons/icon-edit-user.png"; ?>" class="tm-icon-1 tm-flt-l">
+                            <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Edit</p>
+                        </a>
+                    </div>
+                </div>
+
+                <?php if ($_SESSION["users_vid"]["status"] == "Active" || $_SESSION["users_vid"]["status"] == "Pending" && $_SESSION["users_vid"]["id"] != $_SESSION["admin-auth"]["id"]) { ?>
+                    <div class="row">
+                        <div class="col-12">
+
+
+
+                            <a href="#" onclick="document.getElementById('inactive').click();" class="tm-lnk-0 tm-color-14  tm-b-color-12">
+
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-deactivate-user.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Set User as Inactive</p>
+
+
+                            </a>
+
+
+                            <form action="?page=users" method="post">
+                                <button type="submit" id="inactive" name="btn_inactive" class="tm-bdr-0 tm-b-color-0 tm-curs-0"> </button>
+                            </form>
+                        </div>
+                    </div>
+                <?php } ?>
+
+                <?php if ($_SESSION["users_vid"]["status"] == "Inactive" || $_SESSION["users_vid"]["status"] == "Pending" && $_SESSION["users_vid"]["id"] != $_SESSION["admin-auth"]["id"]) { ?>
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="#" onclick="document.getElementById('active').click();" class="tm-lnk-0  tm-b-color-12">
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-activate-user.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Set User as Active</p>
+                            </a>
+                            <form action="?page=users" method="post">
+                                <button type="submit" id="active" name="btn_active" class="tm-bdr-0 tm-b-color-0 tm-curs-0"> </button>
+                            </form>
+                        </div>
+                    </div>
+                <?php } ?>
+
+                <div class="row">
+                    <div class="col-12">
+                        <a href="#p_change_password" class="tm-lnk-0  tm-b-color-12">
+                            <img src="<?php echo $config["STATIC"] . "images/icons/icon-user-key.png"; ?>" class="tm-icon-1 tm-flt-l">
+                            <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Change Password</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tm-overlay" id="p_update_user">
+            <div class="tm-popup">
+                <form action="?page=users" method="post">
+
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="?page=users#p_option2" class="tm-lnk-0  tm-b-color-12">
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-close.png"; ?>" class="tm-icon-1 tm-flt-r">
+                                <p class="tm-color-3 tm-txt-m tm-flt-l">&nbsp; Edit User</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <br>
+                    <p class="tm-color-14 tm-txt-s">Name*</p>
+                    <input type="search" autocomplete="off" value="<?php echo $_SESSION["users_vid"]["name"]; ?>" maxlength="50" name="name" required placeholder="Type here" class="tm-input-0 tm-bdr-0 tm-outline-0 tm-pd-3 tm-txt-s  tm-wd-full">
+                    <hr>
+
+                    <br>
+                    <p class="tm-color-14 tm-txt-s"><input type="checkbox" required>Confirm Action*</p>
+                    <br>
+                    <input type="submit" name="btn_update" class=" tm-pd-3 tm-color-0 tm-b-color-15 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full tm-curs-0" value="Save Changes">
+                    <br>
+                </form>
+            </div>
+        </div>
+        <div class="tm-overlay" id="p_change_password">
+            <div class="tm-popup">
+                <form action="?page=users" method="post">
+
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="?page=users#p_option2" class="tm-lnk-0  tm-b-color-12">
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-close.png"; ?>" class="tm-icon-1 tm-flt-r">
+                                <p class="tm-color-3 tm-txt-m tm-flt-l">&nbsp; Change Password</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <br>
+                    <p class="tm-color-14 tm-txt-s">New Password*</p>
+                    <input type="search" autocomplete="off" minlength="8" maxlength="50" name="password" required placeholder="Type here" class="tm-input-0 tm-bdr-0 tm-outline-0 tm-pd-3 tm-txt-s  tm-wd-full">
+                    <hr>
+
+                    <br>
+                    <p class="tm-color-14 tm-txt-s"><input type="checkbox" required>Confirm Action*</p>
+                    <br>
+                    <input type="submit" name="btn_change_password" class=" tm-pd-3 tm-color-0 tm-b-color-15 tm-bdr-0 tm-outline-0  tm-txt-s tm-wd-full tm-curs-0" value="Save Changes">
+                    <br>
+                </form>
+            </div>
+        </div>
+        <div class="tm-overlay" id="p_details">
+            <div class="tm-popup">
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <a href="?page=users#p_option2" class="tm-lnk-0  tm-b-color-12">
+                            <img src="<?php echo $config["STATIC"] . "images/icons/icon-close.png"; ?>" class="tm-icon-1 tm-flt-r">
+                            <p class="tm-color-3 tm-txt-m tm-flt-l">&nbsp; User Details</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <center>
+                            <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                            <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Name: <?php echo $_SESSION["users_vid"]["name"]; ?></p>
+                        </center>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <center>
+                            <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                            <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Email: <?php echo $_SESSION["users_vid"]["email"]; ?></p>
+                        </center>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <center>
+                            <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                            <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Role: <?php echo $_SESSION["users_vid"]["role"]; ?></p>
+                        </center>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <center>
+                            <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                            <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Status: <?php echo $_SESSION["users_vid"]["status"]; ?></p>
+                        </center>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <center>
+                            <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                            <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Created At: <?php echo $_SESSION["users_vid"]["created_at"]; ?></p>
+                        </center>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <center>
+                            <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                            <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Updated At: <?php echo $_SESSION["users_vid"]["updated_at"]; ?></p>
+                        </center>
+
+                    </div>
+                </div>
+
+
+                <?php if (isset($_SESSION["users_hvid"]) && !empty($_SESSION["users_hvid"])) { ?>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <center>
+
+                                <p class="tm-color-3 tm-txt-m tm-flt-l">&nbsp; Basic Information</p>
+                            </center>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <center>
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; First Name: <?php echo $_SESSION["users_hvid"]["first_name"]; ?></p>
+                            </center>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <center>
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Last Name: <?php echo $_SESSION["users_hvid"]["last_name"]; ?></p>
+                            </center>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <center>
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Phone: <?php echo $_SESSION["users_hvid"]["phone"]; ?></p>
+                            </center>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <center>
+
+                                <p class="tm-color-3 tm-txt-m tm-flt-l">&nbsp; House Information</p>
+                            </center>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <center>
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; House Number: <?php echo $_SESSION["users_hvid"]["house_number"]; ?></p>
+                            </center>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <center>
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Block: <?php echo $_SESSION["users_hvid"]["block"]; ?></p>
+                            </center>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <center>
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Lot: <?php echo $_SESSION["users_hvid"]["lot"]; ?></p>
+                            </center>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <center>
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Street Name: <?php echo $_SESSION["users_hvid"]["street_name"]; ?></p>
+                            </center>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <center>
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Type: <?php echo $_SESSION["users_hvid"]["type"]; ?></p>
+                            </center>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <center>
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Land Size: <?php echo $_SESSION["users_hvid"]["land_size"]; ?></p>
+                            </center>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <center>
+                                <img src="<?php echo $config["STATIC"] . "images/icons/icon-info.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Price: P <?php echo $_SESSION["users_hvid"]["price"]; ?></p>
+                            </center>
+
+                        </div>
+                    </div>
+                <?php } ?>
+
+
+            </div>
+        </div>
+    <?php } ?>
+</body>
+
+</html>

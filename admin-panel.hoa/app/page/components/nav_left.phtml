@@ -1,0 +1,104 @@
+<div class="row">
+    <div class="col-12">
+        <p class="tm-txt-m tm-color-14"> &nbsp;Menu</label>
+
+        </p>
+        <hr>
+    </div>
+</div>
+<div style="overflow-y: scroll; height: 100%;">
+<div class="row">
+        <div class="col-12">
+            <a href="?page=account" class="tm-lnk-0">
+                <center>
+                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-profile.png"; ?>" class="tm-icon-1 tm-flt-l">
+                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Account</p>
+                </center>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <a href="?page=transaction" class="tm-lnk-0">
+                <center>
+                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-payments.png"; ?>" class="tm-icon-1 tm-flt-l">
+                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Transactions
+                    </p>
+                </center>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <a href="?page=dashboard" class="tm-lnk-0">
+                <center>
+                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-dashboard.png"; ?>" class="tm-icon-1 tm-flt-l">
+                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Dashboard</p>
+                </center>
+            </a>
+        </div>
+    </div>
+    <?php if ($_SESSION["admin-auth"]["role"] == "Administrator") { ?>
+        <div class="row">
+            <div class="col-12">
+                <a href="?page=users" class="tm-lnk-0">
+                    <center>
+                        <img src="<?php echo $config["STATIC"] . "images/icons/icon-users.png"; ?>" class="tm-icon-1 tm-flt-l">
+                        <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Users</p>
+                    </center>
+                </a>
+            </div>
+        </div>
+    <?php } ?>
+
+
+    <div class="row">
+        <div class="col-12">
+            <a href="?page=homeowners" class="tm-lnk-0">
+                <center>
+                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-homeowners.png"; ?>" class="tm-icon-1 tm-flt-l">
+                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Homeowners</p>
+                </center>
+            </a>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-12">
+            <a href="?page=reservations" class="tm-lnk-0">
+                <center>
+                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-reservations.png"; ?>" class="tm-icon-1 tm-flt-l">
+                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Reservations</p>
+                </center>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12">
+            <a href="?page=news" class="tm-lnk-0">
+                <center>
+                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-events.png"; ?>" class="tm-icon-1 tm-flt-l">
+                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; News</p>
+                </center>
+            </a>
+        </div>
+    </div>
+   
+    <div class="row">
+        <div class="col-12">
+            <a href="?page=logout" class="tm-lnk-0">
+                <center>
+                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-logout.png"; ?>" class="tm-icon-1 tm-flt-l">
+                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Log Out</p>
+                </center>
+            </a>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?php require $config["PAGE"] . "meta" . DS  . "meta.phtml"; ?>
+</head>
+
+<body>
+    <header>
+        <?php require $config["PAGE"] . "components" . DS  . "nav_top.phtml"; ?>
+    </header>
+    <article>
+        <div class="row">
+            <div class="col-2"><?php require $config["PAGE"] . "components" . DS  . "nav_left.phtml"; ?></div>
+            <div class="col-8">
+                <div class="row">
+
+                    <div class="col-12">
+                        <p class="tm-txt-m tm-color-14">Homeowner / <label class="tm-color-15">Ledger</label></p>
+                        <hr>
+                    </div>
+
+                </div>
+                <div style="overflow-y: scroll; height: 100%">
+                    <div class="row tm-shdw-0">
+                        <div class="col-6">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-pay.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Ledger </p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="tm-color-3 tm-txt-s ">● HOA Price</p>
+                                    <p class="tm-txt-s tm-color-14 ">Price (Per/m²): <label class="tm-color-15">P <?php echo number_format($hoa_pending_pay["price"], 2); ?></label></p>
+                                    <p class="tm-txt-s tm-color-14 ">Land Size: <label class="tm-color-15"><?php echo $hoa_pending_pay["land_size"]; ?>m²</label></p>
+                                    <p class="tm-color-3 tm-txt-s ">● Monthly Payment</p>
+                                    <p class="tm-txt-s tm-color-14 "><label class="tm-color-15">P <?php echo number_format(($hoa_pending_pay["price"] * $hoa_pending_pay["land_size"]) / 30, 2); ?></label></p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-6">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="tm-txt-s tm-color-14 ">Total Spent: <label class="tm-color-15">P <?php echo number_format($total_spent, 2); ?></label></p>
+
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="tm-color-3 tm-txt-s ">● Amount To Pay </p>
+                                    <p class="tm-txt-s tm-color-14 ">Total Balance: <label class="tm-color-15">P <?php echo number_format($total_balance, 2); ?></label></p>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row tm-shdw-0">
+                        <div class="col-12">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-update.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Pending Payments </p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row" style="overflow: scroll; height:500px;">
+                                <div class="col-12">
+
+                                    <?php while ($row = mysqli_fetch_array($res_pending_pay)) { ?>
+
+                                        <p class="tm-color-14 tm-pd-3 tm-txt-s tm-b-color-12 l">● Reservation<?php ?> | <?php echo $row["type"]; ?> |<label class="tm-color-15"> P <?php echo number_format($row["payment"]); ?></label> <label class="tm-flt-r">@ <?php echo $row["date"]; ?></label></p>
+
+                                    <?php } ?>
+
+                                    <?php while ($row = mysqli_fetch_array($req_pay)) { ?>
+
+                                        <p class="tm-color-14 tm-pd-3 tm-txt-s tm-b-color-12 l">● <?php echo $row["title"]; ?> | <?php echo $row["description"]; ?> |<label class="tm-color-15"> P <?php echo number_format($row["amount"]); ?></label> <label class="tm-flt-r">@ <?php echo $row["created_at"]; ?></label></p>
+
+                                    <?php } ?>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row tm-shdw-0">
+                        <div class="col-12">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-history.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Payment Transaction History </p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row" style="overflow: scroll; height:500px;">
+                                <div class="col-12">
+
+                                    <?php while ($row = mysqli_fetch_array($res_pay)) { ?>
+
+                                        <p class="tm-color-14 tm-pd-3 tm-txt-s tm-b-color-12 l">● <?php echo $row["type"]; ?> | <?php echo $row["note"]; ?> | <label class="tm-color-15"> P <?php echo number_format($row["amount"]); ?></label> | <?php echo $row["status"]; ?> <label class="tm-flt-r">@ <?php echo $row["created_at"]; ?></label></p>
+
+                                    <?php } ?>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div class="col-2"><?php require $config["PAGE"] . "components" . DS  . "nav_right.phtml"; ?></div>
+
+
+        </div>
+    </article>
+</body>
+
+</html>

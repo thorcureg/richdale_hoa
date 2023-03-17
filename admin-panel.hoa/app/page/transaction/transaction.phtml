@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?php require $config["PAGE"] . "meta" . DS  . "meta.phtml"; ?>
+</head>
+<style>
+                    /* Set background color of table */
+                    table {
+                    background-color: #fff;
+                    border-collapse: collapse;
+                    width: 100%;
+                    }
+
+                    /* Set color of table header */
+                    th {
+                    background-color: #34495E;
+                    color: #fff;
+                    padding: 10px;
+                    text-align: left;
+                    }
+
+                    /* Set color of table cells */
+                    td {
+                    padding: 10px;
+                    border: 1px solid #ddd;
+                    }
+
+                    /* Set color of alternate rows */
+                    tr:nth-child(even) {
+                    background-color: #f2f2f2;
+                    }
+                            </style>
+<body>
+    <header>
+        <?php require $config["PAGE"] . "components" . DS  . "nav_top.phtml"; ?>
+    </header>
+    <article>
+        <div class="row">
+            <div class="col-2"><?php require $config["PAGE"] . "components" . DS  . "nav_left.phtml"; ?></div>
+            <div class="col-8">                
+                <div class="row">
+
+                    <div class="col-12">
+                        <p class="tm-txt-m tm-color-14">Admin Panel / <label class="tm-color-15">Transactions</label></p>
+                        <hr>
+                    </div>
+                    <!-- TABLE FOR PAYMENT TRANSACTIONS -->
+                    <div class="row" style="overflow: scroll; height:40%; width:100%;">
+                            <div class="col-12">
+                            <div style="display:flex; justify-content:center;">
+
+
+                                <!-- Date range search form-->
+                                <form method="POST" style="text-align:center;">
+                                        <input type="date" name="start_date">
+                                        <input type="date" name="end_date">
+                                        <button type="submit" name="date_range_search">Search</button>
+                                        <button type="submit">Clear</button>
+                                </form>
+                                </div>
+
+                                <!--Filter-->
+                                
+                            
+                            
+                            <table style="width:100%">
+                                <tr>
+                                <th colspan="" style="width:15%"><b>Reference No.</b> </th>
+                                <th colspan="" style="width:20%"><b>Reservation Type</b></th>
+                                <th colspan="" style="width:20%"><b> Note</b> </th>
+                                <th colspan="" style="width:15%"><b>Amount Paid</b> </th>
+                                <th colspan="" style="width:10%"><b>Status</b>
+                                <th colspan="" style="width:18%"><b>Date</b> </th>
+                                
+                            <?php while ($row = mysqli_fetch_array($payment_search )) { ?>
+                                <tr>
+                                <td colspan="">PYMNT-<?php echo $row["id"]; ?></th>
+                                <td colspan=""><?php echo $row["type"]; ?> </th>
+                                <td colspan=""><?php echo $row["note"]; ?> </th>
+                                <td colspan=""> ₱ <?php echo number_format($row["payment"]); ?></label> </th>
+                                <td colspan=""><?php echo $row["status"]; ?> </th>
+                                <td colspan=""><?php echo $row["created_at"]; ?></label></p> </th>
+                            <?php } ?>
+                            </table> 
+                        </div>
+                        
+
+
+                        
+                    </div>
+                    <!-- TABLE FOR RESERVATION TRANSACTIONS -->
+                    <div class="row" style="overflow: scroll; height:40%; width:100%;">
+                            <div class="col-12">
+                            
+                            <form method="POST" style="text-align:center">
+                                <input type="date" name="start_date">
+                                <input type="date" name="end_date">
+                                <button type="submit" name="r_date_range_search">Search</button>
+                                <button type="submit">Clear</button>
+                            </form>
+                                </div>
+                            <table style="width:100%">
+                                <tr>
+                                <th colspan="" style="width:15%"><b>Reference No.</b> </th>
+                                <th colspan="" style="width:20%"><b>Reservation Type</b></th>
+                                <th colspan="" style="width:20%"><b> Note</b> </th>
+                                <th colspan="" style="width:15%"><b>Amount</b> </th>
+                                <th colspan="" style="width:10%"><b>Status</b>
+                                <th colspan="" style="width:10%"><b>From</b>
+                                <th colspan="" style="width:10%"><b>to</b>
+                                <th colspan="" style="width:18%"><b>Date Reserved</b> </th>
+                                
+                            <?php while ($row = mysqli_fetch_array($reservation_search )) { ?>
+
+                            
+
+                                <tr>
+                                <td colspan="">RSRV-<?php echo $row["id"]; ?></th>
+                                <td colspan=""><?php echo $row["type"]; ?> </th>
+                                <td colspan=""><?php echo $row["note"]; ?> </th>
+                                <td colspan=""> ₱ <?php echo number_format($row["amount"]); ?></label> </th>
+                                <td colspan=""><?php echo $row["status"]; ?> </th>
+                                <td colspan=""><?php echo date("h:i A", strtotime($row["start_time"])); ?></td>
+                                <td colspan=""><?php echo date("h:i A", strtotime($row["end_time"])); ?></td>
+                                <td colspan=""><?php echo $row["date"]; ?></label></p> </th>
+                                
+                                
+                                
+
+                            <?php } ?>
+                            </table>
+
+                            
+                        </div>
+                        
+
+
+                        
+                    </div>       
+                </div>
+                    
+            </div>
+            <div class="col-2"><?php require $config["PAGE"] . "components" . DS  . "nav_right.phtml"; ?></div>
+
+        </div>
+
+   
+</article>
+ </body>

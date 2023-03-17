@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?php require $config["PAGE"] . "meta" . DS  . "meta.phtml"; ?>
+</head>
+
+<body>
+    <header>
+        <?php require $config["PAGE"] . "components" . DS  . "nav_top.phtml"; ?>
+    </header>
+    <article>
+        <div class="row">
+            <div class="col-2"><?php require $config["PAGE"] . "components" . DS  . "nav_left.phtml"; ?></div>
+            <div class="col-8">
+                <div class="row">
+
+                    <div class="col-12">
+                        <p class="tm-txt-m tm-color-14">Admin Panel / <label class="tm-color-15">Dashboard</label></p>
+                        <hr>
+                    </div>
+
+                </div>
+                <div style="overflow-y: scroll; height: 100%">
+                    <div class="row tm-shdw-0">
+                        <div class="col-6">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-users.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Users </p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="tm-txt-s tm-color-14">● Role</p>
+                                    <p class="tm-txt-s tm-color-14 ">Administrators: <label class="tm-color-15"><?php echo mysqli_num_rows($users_admin); ?></label></p>
+                                    <p class="tm-txt-s tm-color-14 ">Officers: <label class="tm-color-15"><?php echo mysqli_num_rows($users_officer); ?></label></p>
+                                    <p class="tm-txt-s tm-color-14 ">Homeowners: <label class="tm-color-15"><?php echo mysqli_num_rows($users_standard); ?></label></p>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+
+                            <div class="row">
+                                <div class="col-12">
+
+                                    <p class="tm-color-3 tm-txt-s tm-txt-flt-c  ">&nbsp; Total Data: <label class="tm-color-15"> <?php echo mysqli_num_rows($users_overall); ?></label></p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-12">
+
+
+                                    <p class="tm-txt-s tm-color-14">● Status</p>
+                                    <p class="tm-txt-s tm-color-14 ">Active: <label class="tm-color-15"><?php echo mysqli_num_rows($users_active); ?></label> </p>
+                                    <p class="tm-txt-s tm-color-14 ">Inactive: <label class="tm-color-15"> <?php echo mysqli_num_rows($users_inactive); ?></label> </p>
+                                    <p class="tm-txt-s tm-color-14 ">Not Setup: <label class="tm-color-15"><?php echo mysqli_num_rows($users_not_setup); ?></label></p>
+                                    <p class="tm-txt-s tm-color-14 ">Pending: <label class="tm-color-15"><?php echo mysqli_num_rows($users_pending); ?></label></p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row tm-shdw-0">
+                        <div class="col-6">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-payments.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Payments </p>
+
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="tm-txt-s tm-color-14 ">Pending: <label class="tm-color-15"><?php echo mysqli_num_rows($payments_pending); ?></label></p>
+                                    <p class="tm-txt-s tm-color-14 ">Cancelled: <label class="tm-color-15"><?php echo mysqli_num_rows($payments_cancelled); ?></label></p>
+                                    <p class="tm-txt-s tm-color-14 ">Paid: <label class="tm-color-15"><?php echo mysqli_num_rows($payments_paid); ?></label></p>
+                                    <p class="tm-txt-s tm-color-14 ">Total: <label class="tm-color-15">P <?php echo number_format($total_balancee, 2);?></label></p>
+
+                                </div>   
+                            </div>
+                            
+                        </div>
+                        <div class="col-6">
+
+                            <div class="row">
+                                <div class="col-12">
+
+                                    <p class="tm-color-3 tm-txt-s tm-txt-flt-c  ">&nbsp; Total Data: <label class="tm-color-15"> <?php echo mysqli_num_rows($payments_overall); ?></label></p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-12">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="row tm-shdw-0">
+                        <div class="col-6">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <img src="<?php echo $config["STATIC"] . "images/icons/icon-reservations.png"; ?>" class="tm-icon-1 tm-flt-l">
+                                    <p class="tm-color-3 tm-txt-s tm-flt-l">&nbsp; Reservations </p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="tm-txt-s tm-color-14 ">Pending: <label class="tm-color-15"><?php echo mysqli_num_rows($res_pending); ?></label></p>
+                                    <p class="tm-txt-s tm-color-14 ">Cancelled: <label class="tm-color-15"><?php echo mysqli_num_rows($res_cancelled); ?></label></p>
+                                    <p class="tm-txt-s tm-color-14 ">Completed: <label class="tm-color-15"><?php echo mysqli_num_rows($res_completed); ?></label></p>
+                                    <p class="tm-txt-s tm-color-14 ">Total: <label class="tm-color-15">P <?php echo number_format($total_balance, 2);?></label></p>
+
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        
+                        <div class="col-6">
+
+                            <div class="row">
+                                <div class="col-12">
+
+                                    <p class="tm-color-3 tm-txt-s tm-txt-flt-c  ">&nbsp; Total Data: <label class="tm-color-15"> <?php echo mysqli_num_rows($res_overall); ?></label></p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-12">
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-2"><?php require $config["PAGE"] . "components" . DS  . "nav_right.phtml"; ?></div>
+
+
+        </div>
+        
+        
+    </article>
+</body>
+
+</html>
